@@ -5,66 +5,7 @@ import {
   annotationCalloutCircle
 } from 'd3-svg-annotation'
 
-interface ChartDataItem {
-  date: Date
-  value: number
-}
-
-interface AnnotationData {
-  date: string
-  close: number | null
-}
-
-interface AnnotationNote {
-  label: string
-  title: string
-}
-interface AnnotationCommon {
-  id: string
-  note: AnnotationNote
-  data?: AnnotationData
-  dx: number
-  dy: number
-}
-
-interface AnnotationCallout extends AnnotationCommon {
-  type: typeof annotationCallout // Ensure type is annotationCallout
-}
-
-interface AnnotationCalloutCurve extends AnnotationCommon {
-  type: typeof annotationCalloutCurve // Ensure type is annotationCalloutCurve
-  connector: {
-    points: number[][]
-  }
-}
-
-interface AnnotationCalloutCircle extends AnnotationCommon {
-  type: typeof annotationCalloutCircle // Ensure type is annotationCalloutCircle
-  color: string
-  x: number
-  y: number
-  subject: {
-    radius: number
-    radiusPadding: number
-  }
-}
-
-interface AnnotationCalloutCircle extends AnnotationCommon {
-  type: typeof annotationCalloutCircle // Ensure type is annotationCalloutCircle
-  color: string
-  x: number
-  y: number
-  subject: {
-    radius: number
-    radiusPadding: number
-  }
-}
-
-type Annotation =
-  | AnnotationCommon
-  | AnnotationCallout
-  | AnnotationCalloutCurve
-  | AnnotationCalloutCircle
+import type { ChartDataItem, Annotation, AnnotationData } from '@/types/types'
 
 export const getDateData = (datestring: string, data: ChartDataItem[]) => {
   /*
@@ -90,7 +31,7 @@ export const getDateData = (datestring: string, data: ChartDataItem[]) => {
   }
 }
 
-export const initialAnnotations: Annotation[] = [
+export const initialAnnotations:Annotation<AnnotationData>[] = [
   {
     id: 'bitcoin-cash-fork',
     note: {

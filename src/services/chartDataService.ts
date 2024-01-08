@@ -1,7 +1,4 @@
-interface ChartDataItem {
-  date: Date
-  value: number
-}
+import type { ChartDataItem } from '@/types/types';
 
 export const fetchChartData = async (): Promise<ChartDataItem[]> => {
   const startDate = '2017-07-01'
